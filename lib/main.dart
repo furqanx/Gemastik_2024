@@ -1,5 +1,6 @@
 import 'package:apps/src/features/authentication/presentation/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:neubrutalism_ui/neubrutalism_ui.dart';
 
 void main() {
   runApp(MyApp());

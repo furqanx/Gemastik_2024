@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neubrutalism_ui/neubrutalism_ui.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -53,81 +54,22 @@ class SplashScreen extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 80, // Atur jarak dari bawah layar
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 40),
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Fungsi untuk menangani saat tombol ditekan
-                  },
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all(const Color(0xff0B8FF9F)),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.zero,
-                      ),
-                    ),
-                    side: MaterialStatePropertyAll<BorderSide>(
-                      BorderSide(
-                        color: Colors.black,
-                        width: 2,
-                      ),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 10), // Atur margin vertikal
-                    child: Text("Lanjut",
-                        style: TextStyle(
-                          fontFamily: 'IBMPlexMono',
-                          fontWeight: FontWeight.w700,
-                          color: Colors.black,
-                        )),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          // Tombol kedua di bawah tombol pertama
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 40, // Atur jarak dari bawah layar
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Fungsi untuk menangani saat tombol ditekan
-                  },
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all(const Color(0xffBEF0CD)),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.zero,
-                      ),
-                    ),
-                    side: MaterialStatePropertyAll<BorderSide>(
-                      BorderSide(
-                        color: Colors.black,
-                        width: 2,
-                      ),
-                    ),
-                    elevation: MaterialStatePropertyAll<double>(8),
-                    shadowColor: MaterialStateProperty.all<Color>(
-                        Colors.black.withOpacity(1.0)),
-                  ),
-                  child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10), // Atur margin vertikal
-                      child: Text(
-                        "Sudah Mempunyai Akun",
+          Stack(
+            children: [
+              Positioned.fill(
+                // Menggunakan Positioned.fill agar child menempati seluruh ruang yang tersedia
+                bottom: 125, // Memberikan jarak 20 dari bawah layar
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: NeuTextButton(
+                      borderRadius: BorderRadius.zero,
+                      buttonColor: const Color(0xff0B8FF9F),
+                      buttonHeight: 40,
+                      buttonWidth: 100,
+                      enableAnimation: true,
+                      onPressed: () => debugPrint("hello"),
+                      text: const Text(
+                        "Start",
                         style: TextStyle(
                           fontFamily: 'IBMPlexMono',
                           fontWeight: FontWeight.w700,
@@ -136,7 +78,30 @@ class SplashScreen extends StatelessWidget {
                       )),
                 ),
               ),
-            ),
+              Positioned.fill(
+                // Menggunakan Positioned.fill agar child menempati seluruh ruang yang tersedia
+                bottom: 65, // Memberikan jarak 20 dari bawah layar
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: NeuTextButton(
+                    borderRadius: BorderRadius.zero,
+                    buttonColor: const Color(0xffBEF0CD),
+                    buttonHeight: 40,
+                    buttonWidth: 220,
+                    enableAnimation: true,
+                    onPressed: () => debugPrint("hello"),
+                    text: const Text(
+                      "Sudah Mempunyai Akun",
+                      style: TextStyle(
+                        fontFamily: 'IBMPlexMono',
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
