@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -13,14 +11,18 @@ class MyApp extends StatelessWidget {
       title: 'My App',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Welcome to My App'),
+          title: const Text('Welcome to My App'),
         ),
-        body: Center(
-          child: Text(
-            'Hello, Flutter!',
-            style: TextStyle(fontSize: 24),
-          ),
-        ),
+        body: _buildBody(),
+      ),
+    );
+  }
+
+  Widget _buildBody() {
+    return const Center(
+      child: Text(
+        'Ini adalah halaman Home',
+        style: TextStyle(fontSize: 24),
       ),
     );
   }
