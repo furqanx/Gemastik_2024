@@ -1,4 +1,3 @@
-import 'package:apps/src/features/authentication/presentation/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -6,18 +5,23 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'FitDietary',
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFFB8FF9F)),
+      title: 'My App',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Welcome to My App'),
+        ),
+        body: Center(
+          child: Text(
+            'Hello, Flutter!',
+            style: TextStyle(fontSize: 24),
+          ),
+        ),
       ),
-      debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
     );
   }
 }
