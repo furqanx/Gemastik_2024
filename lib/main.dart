@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 void main() {
   runApp(MyApp());
@@ -45,89 +46,185 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  Card _buildFoodRecomendationCard() {
+    return Card(
+      child: SizedBox(
+        width: 200,
+        child: Column(
+          children: <Widget>[
+            Image.asset(
+              'assets/images/salad_image_1.jpg',
+              width: 150,
+              height: 150,
+              fit: BoxFit.cover,
+            ),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text('Salad'),
+                Text('4.8'),
+              ],
+            ),
+            const Text('53 cal'),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Card _buildIngredientsRecomendationCard() {
+    return Card(
+      child: SizedBox(
+        width: 200,
+        child: Column(
+          children: <Widget>[
+            Image.asset(
+              'assets/images/ingredient_image_1.jpg',
+              width: 150,
+              height: 150,
+              fit: BoxFit.cover,
+            ),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text('Dada ayam'),
+                Text('4.9'),
+              ],
+            ),
+            const Text('100 cal'),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Card _buildCalorieBoardCard() {
+    return const Card(
+      child: SizedBox(
+        width: 300,
+        height: 150,
+        child: Column(
+          children: <Widget>[
+            Text('0 of 1850 cal'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text('Protein: 0%'),
+                Text('Lemak : 0%'),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text('Karbohidrat: 0%'),
+                Text('Serat: 0%'),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildHomeContent() {
+    return Center(
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Text('Selected Index: $_selectedIndex'),
+            _buildCalorieBoardCard(),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  _buildFoodRecomendationCard(),
+                  _buildFoodRecomendationCard(),
+                  _buildFoodRecomendationCard(),
+                  _buildFoodRecomendationCard(),
+                  _buildFoodRecomendationCard(),
+                ],
+              ),
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  _buildIngredientsRecomendationCard(),
+                  _buildIngredientsRecomendationCard(),
+                  _buildIngredientsRecomendationCard(),
+                  _buildIngredientsRecomendationCard(),
+                  _buildIngredientsRecomendationCard(),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // Widget _buildMap() {
+  //   return Center();
+  // }
+
+  // Widget _buildCameraCaloryEstimator() {
+  //   return Center();
+  // }
+  // // Halaman Edit profil
+  // // Halaman privacy policy
+  // // 8 Halaman memasukkan data diri
+  // // Halaman atau card input data
+
+  Widget _buildProfileContent() {
+    return const Center(
+      child: Card(
+        child: SizedBox(
+          child: Column(
+            children: [],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildContent() {
+    switch (_selectedIndex) {
+      case 0:
+        return _buildHomeContent(); // Menggunakan widget baru untuk halaman Home
+      // case 1:
+      //   return _buildMap();
+      // case 2:
+      //   return _buildCameraCaloryEstimator();
+      case 3:
+        return _buildProfileContent();
+      default:
+        return Container();
+    }
+  }
+
+  BottomNavigationBar _buildBottomNavigationBar() {
+    return BottomNavigationBar(
+      items: <BottomNavigationBarItem>[
+        for (var i = 0; i < _icons.length; i++)
+          BottomNavigationBarItem(
+            icon: Icon(_icons[i]),
+            label: _labels[i],
+          ),
+      ],
+      currentIndex: _selectedIndex,
+      unselectedItemColor: Colors.black,
+      selectedItemColor: Colors.blue,
+      onTap: _onItemTapped,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: Text('Selected Index: $_selectedIndex'),
-          ),
-          Center(
-            child: Card(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const ListTile(
-                    leading: Icon(Icons.album),
-                    title: Text('The Enchanted'),
-                    subtitle: Text('Music by Julie'),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      TextButton(
-                        onPressed: () {/* ... */},
-                        child: const Text('Buy Tickets'),
-                      ),
-                      const SizedBox(width: 8),
-                      TextButton(
-                        onPressed: () {/* ... */},
-                        child: const Text('Listen'),
-                      ),
-                      const SizedBox(width: 8),
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ),
-          Center(
-            child: Card(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const ListTile(
-                    leading: Icon(Icons.album),
-                    title: Text('The Enchanted'),
-                    subtitle: Text('Music by Julie'),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      TextButton(
-                        onPressed: () {/* ... */},
-                        child: const Text('Buy Tickets'),
-                      ),
-                      const SizedBox(width: 8),
-                      TextButton(
-                        onPressed: () {/* ... */},
-                        child: const Text('Listen'),
-                      ),
-                      const SizedBox(width: 8),
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        ///////////////////////////
-        items: <BottomNavigationBarItem>[
-          for (var i = 0; i < _icons.length; i++)
-            BottomNavigationBarItem(
-              icon: Icon(_icons[i]),
-              label: _labels[i],
-            ),
-        ],
-        currentIndex: _selectedIndex,
-        unselectedItemColor: Colors.black,
-        selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
-      ),
+      body: _buildContent(),
+      bottomNavigationBar: _buildBottomNavigationBar(),
     );
   }
 }
