@@ -13,6 +13,8 @@ class CaloryEstimatorContent extends StatefulWidget {
 class _CaloryEstimatorContentState extends State<CaloryEstimatorContent> {
   late CameraController _controller;
   late Future<void> _initializeControllerFuture;
+  bool _flashOn = false;
+  double _zoomLevel = 1.0;
 
   @override
   void initState() {
@@ -25,6 +27,26 @@ class _CaloryEstimatorContentState extends State<CaloryEstimatorContent> {
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  void _toggleFlash() {
+    setState(() {
+      _flashOn = !_flashOn;
+      _controller.setFlashMode(_flashOn ? FlashMode.torch : FlashMode.off);
+    });
+  }
+
+  void _toggleZoom() {
+    setState(() {
+      if (_zoomLevel == 1.0) {
+        _zoomLevel = 2.0;
+      } else if (_zoomLevel == 2.0) {
+        _zoomLevel = 4.0;
+      } else {
+        _zoomLevel = 1.0;
+      }
+      _controller.setZoomLevel(_zoomLevel);
+    });
   }
 
   @override
@@ -43,18 +65,42 @@ class _CaloryEstimatorContentState extends State<CaloryEstimatorContent> {
               }
             },
           ),
-          ElevatedButton(
-            onPressed: () async {
-              try {
-                await _initializeControllerFuture;
-                final image = await _controller.takePicture();
-                // Do something with the captured image
-                print('Photo taken at path: ${image.path}');
-              } catch (e) {
-                print('Error capturing photo: $e');
-              }
-            },
-            child: Text('Take Picture'),
+          SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                icon: Icon(Icons.zoom_in, size: 30),
+                onPressed: _toggleZoom,
+              ),
+              SizedBox(width: 20),
+              GestureDetector(
+                onTap: () async {
+                  try {
+                    await _initializeControllerFuture;
+                    final image = await _controller.takePicture();
+                    // Do something with the captured image
+                    print('Photo taken at path: ${image.path}');
+                  } catch (e) {
+                    print('Error capturing photo: $e');
+                  }
+                },
+                child: Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(Icons.camera, color: Colors.white, size: 30),
+                ),
+              ),
+              SizedBox(width: 20),
+              IconButton(
+                icon: Icon(_flashOn ? Icons.flash_on : Icons.flash_off, size: 30),
+                onPressed: _toggleFlash,
+              ),
+            ],
           ),
         ],
       ),
