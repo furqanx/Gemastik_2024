@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:neubrutalism_ui/neubrutalism_ui.dart';
+import 'package:apps/src/features/form/presentation/username_form.dart';
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
+class StartScreen extends StatelessWidget {
+  const StartScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
           Container(
-            color: const Color(0xFFB8FF9F),
+            color: const Color(0xFFDEFFD8),
           ),
           Stack(
             children: [
@@ -46,8 +47,7 @@ class SplashScreen extends StatelessWidget {
                           fontSize: 16,
                           color: const Color(0xFF3D3D3D),
                           fontFamily: 'RobotoMono'),
-                      textAlign: TextAlign
-                          .center, // Menengahkan teks secara horizontal
+                      textAlign: TextAlign.center, //
                     ),
                   ),
                 ],
@@ -57,37 +57,40 @@ class SplashScreen extends StatelessWidget {
           Stack(
             children: [
               Positioned.fill(
-                // Menggunakan Positioned.fill agar child menempati seluruh ruang yang tersedia
-                bottom: 125, // Memberikan jarak 20 dari bawah layar
+                bottom: 140,
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: NeuTextButton(
-                      borderRadius: BorderRadius.zero,
-                      buttonColor: const Color(0xff0B8FF9F),
-                      buttonHeight: 40,
-                      buttonWidth: 100,
-                      enableAnimation: true,
-                      onPressed: () => debugPrint("hello"),
-                      text: const Text(
-                        "Start",
-                        style: TextStyle(
-                          fontFamily: 'IBMPlexMono',
-                          fontWeight: FontWeight.w700,
-                          color: Colors.black,
-                        ),
-                      )),
+                    borderRadius: BorderRadius.zero,
+                    buttonColor: const Color(0xff0B8FF9F),
+                    buttonHeight: 50,
+                    buttonWidth: 150,
+                    enableAnimation: true,
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const UsernameForm()),
+                    ),
+                    text: const Text(
+                      "Lanjut",
+                      style: TextStyle(
+                        fontFamily: 'IBMPlexMono',
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
                 ),
               ),
               Positioned.fill(
-                // Menggunakan Positioned.fill agar child menempati seluruh ruang yang tersedia
-                bottom: 65, // Memberikan jarak 20 dari bawah layar
+                bottom: 65,
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: NeuTextButton(
                     borderRadius: BorderRadius.zero,
                     buttonColor: const Color(0xffBEF0CD),
-                    buttonHeight: 40,
-                    buttonWidth: 220,
+                    buttonHeight: 50,
+                    buttonWidth: 250,
                     enableAnimation: true,
                     onPressed: () => debugPrint("hello"),
                     text: const Text(

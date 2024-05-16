@@ -1,9 +1,8 @@
-import 'package:apps/src/features/authentication/presentation/splash_screen.dart';
+import 'package:apps/src/features/authentication/presentation/start_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:neubrutalism_ui/neubrutalism_ui.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MaterialApp(title: 'FitDietary', home: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -12,13 +11,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'FitDietary',
+      title: 'DietaryFit',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFFB8FF9F)),
       ),
       debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
+      home: const StartScreen(),
     );
   }
 }
